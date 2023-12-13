@@ -63,6 +63,16 @@ export interface WeeklyTriggerInput {
   minute: number;
 }
 
+export interface MonthlyTriggerInput {
+  type: 'monthly';
+  channelId?: string;
+  day: number;
+  month: number;
+  hour: number;
+  minute: number;
+  repeatAmount: number;
+}
+
 export interface YearlyTriggerInput {
   type: 'yearly';
   channelId?: string;
@@ -86,4 +96,5 @@ export type NotificationTriggerInput =
   | TimeIntervalTriggerInput
   | DailyTriggerInput
   | WeeklyTriggerInput
+  | MonthlyTriggerInput
   | YearlyTriggerInput;

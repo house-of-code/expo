@@ -178,7 +178,14 @@ public class NotificationSerializer {
       bundle.putInt("weekday", ((WeeklyTrigger) trigger).getWeekday());
       bundle.putInt("hour", ((WeeklyTrigger) trigger).getHour());
       bundle.putInt("minute", ((WeeklyTrigger) trigger).getMinute());
-    } else if (trigger instanceof YearlyTrigger) {
+    } else if (trigger instanceof MonthlyTrigger) {
+      bundle.putString("type", "monthly");
+      bundle.putInt("day", ((MonthlyTrigger) trigger).getDay());
+      bundle.putInt("month", ((MonthlyTrigger) trigger).getMonth());
+      bundle.putInt("hour", ((MonthlyTrigger) trigger).getHour());
+      bundle.putInt("minute", ((MonthlyTrigger) trigger).getMinute());
+      bundle.putInt("repeatAmount", ((MonthlyTrigger) trigger).getRepeatAmount());
+    }else if (trigger instanceof YearlyTrigger) {
       bundle.putString("type", "yearly");
       bundle.putInt("day", ((YearlyTrigger) trigger).getDay());
       bundle.putInt("month", ((YearlyTrigger) trigger).getMonth());

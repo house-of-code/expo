@@ -7,6 +7,7 @@ import {
   NotificationTriggerInput,
   DailyTriggerInput,
   WeeklyTriggerInput,
+  MonthlyTriggerInput,
   YearlyTriggerInput,
   CalendarTriggerInput,
   TimeIntervalTriggerInput,
@@ -95,6 +96,14 @@ const WEEKLY_TRIGGER_EXPECTED_DATE_COMPONENTS: readonly ValidTriggerDateComponen
   'hour',
   'minute',
 ];
+
+const MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS: readonly ValidTriggerDateComponents[] = [
+  'day',
+  'month',
+  'hour',
+  'minute',
+];
+
 const YEARLY_TRIGGER_EXPECTED_DATE_COMPONENTS: readonly ValidTriggerDateComponents[] = [
   'day',
   'month',
@@ -133,6 +142,17 @@ export function parseTrigger(
       weekday: userFacingTrigger.weekday,
       hour: userFacingTrigger.hour,
       minute: userFacingTrigger.minute,
+    };
+  } else if (isMonthlyTriggerInput(userFacingTrigger)) {
+    validateDateComponentsInTrigger(userFacingTrigger, MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS);
+    return {
+      type: 'monthly',
+      channelId: userFacingTrigger.channelId,
+      day: userFacingTrigger.day,
+      month: userFacingTrigger.month,
+      hour: userFacingTrigger.hour,
+      minute: userFacingTrigger.minute,
+      repeatAmount: userFacingTrigger.repeatAmount,
     };
   } else if (isYearlyTriggerInput(userFacingTrigger)) {
     validateDateComponentsInTrigger(userFacingTrigger, YEARLY_TRIGGER_EXPECTED_DATE_COMPONENTS);
@@ -227,6 +247,22 @@ function isWeeklyTriggerInput(
     Object.keys(triggerWithoutChannelId).length ===
       WEEKLY_TRIGGER_EXPECTED_DATE_COMPONENTS.length + 1 &&
     WEEKLY_TRIGGER_EXPECTED_DATE_COMPONENTS.every(
+      (component) => component in triggerWithoutChannelId
+    ) &&
+    'repeats' in triggerWithoutChannelId &&
+    triggerWithoutChannelId.repeats === true
+  );
+}
+
+function isMonthlyTriggerInput(
+  trigger: SchedulableNotificationTriggerInput
+): trigger is MonthlyTriggerInput {
+  if (typeof trigger !== 'object') return false;
+  const { channelId, ...triggerWithoutChannelId } = trigger as MonthlyTriggerInput;
+  return (
+    Object.keys(triggerWithoutChannelId).length ===
+    MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS.length + 1 &&
+    MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS.every(
       (component) => component in triggerWithoutChannelId
     ) &&
     'repeats' in triggerWithoutChannelId &&

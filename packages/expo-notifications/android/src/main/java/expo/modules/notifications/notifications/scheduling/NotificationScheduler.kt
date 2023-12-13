@@ -23,6 +23,7 @@ import expo.modules.notifications.notifications.triggers.DailyTrigger
 import expo.modules.notifications.notifications.triggers.DateTrigger
 import expo.modules.notifications.notifications.triggers.TimeIntervalTrigger
 import expo.modules.notifications.notifications.triggers.WeeklyTrigger
+import expo.modules.notifications.notifications.triggers.MonthlyTrigger
 import expo.modules.notifications.notifications.triggers.YearlyTrigger
 import expo.modules.notifications.service.NotificationsService
 import expo.modules.notifications.service.NotificationsService.Companion.getAllScheduledNotifications
@@ -193,6 +194,27 @@ open class NotificationScheduler : Module() {
           weekday.toInt(),
           hour.toInt(),
           minute.toInt(),
+          channelId
+        )
+      }
+
+      "monthly" -> {
+        val day = params["day"] as? Number
+        val month = params["month"] as? Number
+        val hour = params["hour"] as? Number
+        val minute = params["minute"] as? Number
+        val repeatAmount = params["repeatAmount"] as? Number
+
+        if (day == null || month == null || hour == null || minute == null || repeatAmount == null) {
+          throw InvalidArgumentException("Invalid value(s) provided for monthly trigger.")
+        }
+
+        MonthlyTrigger(
+          day.toInt(),
+          month.toInt(),
+          hour.toInt(),
+          minute.toInt(),
+          repeatAmount.toInt(),
           channelId
         )
       }

@@ -70,6 +70,12 @@ const WEEKLY_TRIGGER_EXPECTED_DATE_COMPONENTS = [
     'hour',
     'minute',
 ];
+const MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS = [
+    'day',
+    'month',
+    'hour',
+    'minute',
+];
 const YEARLY_TRIGGER_EXPECTED_DATE_COMPONENTS = [
     'day',
     'month',
@@ -102,6 +108,18 @@ export function parseTrigger(userFacingTrigger) {
             channelId: userFacingTrigger.channelId,
             weekday: userFacingTrigger.weekday,
             hour: userFacingTrigger.hour,
+            minute: userFacingTrigger.minute,
+        };
+    }
+    else if (isMonthlyTriggerInput(userFacingTrigger)) {
+        validateDateComponentsInTrigger(userFacingTrigger, MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS);
+        return {
+            type: 'monthly',
+            channelId: userFacingTrigger.channelId,
+            day: userFacingTrigger.day,
+            month: userFacingTrigger.month,
+            hour: userFacingTrigger.hour,
+            repeatAmount: userFacingTrigger.repeatAmount,
             minute: userFacingTrigger.minute,
         };
     }
@@ -176,6 +194,16 @@ function isWeeklyTriggerInput(trigger) {
     return (Object.keys(triggerWithoutChannelId).length ===
         WEEKLY_TRIGGER_EXPECTED_DATE_COMPONENTS.length + 1 &&
         WEEKLY_TRIGGER_EXPECTED_DATE_COMPONENTS.every((component) => component in triggerWithoutChannelId) &&
+        'repeats' in triggerWithoutChannelId &&
+        triggerWithoutChannelId.repeats === true);
+}
+function isMonthlyTriggerInput(trigger) {
+    if (typeof trigger !== 'object')
+        return false;
+    const { channelId, ...triggerWithoutChannelId } = trigger;
+    return (Object.keys(triggerWithoutChannelId).length ===
+        MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS.length + 1 &&
+        MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS.every((component) => component in triggerWithoutChannelId) &&
         'repeats' in triggerWithoutChannelId &&
         triggerWithoutChannelId.repeats === true);
 }

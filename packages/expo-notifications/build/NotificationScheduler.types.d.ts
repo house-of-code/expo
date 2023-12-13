@@ -48,6 +48,15 @@ export interface WeeklyTriggerInput {
     hour: number;
     minute: number;
 }
+export interface MonthlyTriggerInput {
+    type: 'monthly';
+    channelId?: string;
+    day: number;
+    month: number;
+    hour: number;
+    minute: number;
+    repeatAmount: number;
+}
 export interface YearlyTriggerInput {
     type: 'yearly';
     channelId?: string;
@@ -61,5 +70,5 @@ export interface DateTriggerInput {
     channelId?: string;
     timestamp: number;
 }
-export type NotificationTriggerInput = null | ChannelAwareTriggerInput | DateTriggerInput | CalendarTriggerInput | TimeIntervalTriggerInput | DailyTriggerInput | WeeklyTriggerInput | YearlyTriggerInput;
+export type NotificationTriggerInput = null | ChannelAwareTriggerInput | DateTriggerInput | CalendarTriggerInput | TimeIntervalTriggerInput | DailyTriggerInput | WeeklyTriggerInput | MonthlyTriggerInput | YearlyTriggerInput;
 //# sourceMappingURL=NotificationScheduler.types.d.ts.map

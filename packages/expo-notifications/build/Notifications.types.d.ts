@@ -264,6 +264,19 @@ export interface WeeklyTriggerInput {
     repeats: true;
 }
 /**
+ * A trigger that will cause the notification to be delivered once every month.
+ * > **Note:** all properties are specified in JavaScript Date's ranges.
+ */
+export interface MonthlyTriggerInput {
+    channelId?: string;
+    day: number;
+    month: number;
+    hour: number;
+    minute: number;
+    repeatAmount: number;
+    repeats: true;
+}
+/**
  * A trigger that will cause the notification to be delivered once every year.
  * > **Note:** all properties are specified in JavaScript Date's ranges.
  */
@@ -287,7 +300,7 @@ export type DateTriggerInput = Date | number | {
  * A type represents time-based, schedulable triggers. For these triggers you can check the next trigger date
  * with [`getNextTriggerDateAsync`](#notificationsgetnexttriggerdateasynctrigger).
  */
-export type SchedulableNotificationTriggerInput = DateTriggerInput | TimeIntervalTriggerInput | DailyTriggerInput | WeeklyTriggerInput | YearlyTriggerInput | CalendarTriggerInput;
+export type SchedulableNotificationTriggerInput = DateTriggerInput | TimeIntervalTriggerInput | DailyTriggerInput | WeeklyTriggerInput | MonthlyTriggerInput | YearlyTriggerInput | CalendarTriggerInput;
 /**
  * A type represents possible triggers with which you can schedule notifications.
  * A `null` trigger means that the notification should be scheduled for delivery immediately.
