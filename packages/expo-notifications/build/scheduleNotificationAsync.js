@@ -119,8 +119,8 @@ export function parseTrigger(userFacingTrigger) {
             day: userFacingTrigger.day,
             month: userFacingTrigger.month,
             hour: userFacingTrigger.hour,
-            repeatAmount: userFacingTrigger.repeatAmount,
             minute: userFacingTrigger.minute,
+            repeatAmount: userFacingTrigger.repeatAmount,
         };
     }
     else if (isYearlyTriggerInput(userFacingTrigger)) {

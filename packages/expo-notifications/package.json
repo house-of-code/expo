@@ -1,6 +1,6 @@
 {
-  "name": "expo-notifications",
-  "version": "0.27.0",
+  "name": "@pentiamobile/expo-notifications",
+  "version": "0.27.3",
   "description": "Notifications module",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -48,6 +48,7 @@
     "uuid": "^3.4.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.11",
     "@types/node-fetch": "^2.5.7",
     "@types/uuid": "^3.4.7",
     "expo-module-scripts": "^3.0.0",

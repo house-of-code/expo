@@ -33,6 +33,7 @@ import expo.modules.notifications.notifications.triggers.DailyTrigger;
 import expo.modules.notifications.notifications.triggers.DateTrigger;
 import expo.modules.notifications.notifications.triggers.TimeIntervalTrigger;
 import expo.modules.notifications.notifications.triggers.WeeklyTrigger;
+import expo.modules.notifications.notifications.triggers.MonthlyTrigger;
 import expo.modules.notifications.notifications.triggers.YearlyTrigger;
 
 public class NotificationSerializer {
