@@ -1,6 +1,6 @@
 {
-  "name": "@pentiamobile/expo-notifications",
-  "version": "0.27.3",
+  "name": "@pentiamobile/old-expo-notifications",
+  "version": "0.23.1",
   "description": "Notifications module",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -37,18 +37,17 @@
     "preset": "expo-module-scripts/ios"
   },
   "dependencies": {
-    "@expo/image-utils": "^0.4.0",
+    "@expo/image-utils": "^0.3.18",
     "@ide/backoff": "^1.0.0",
     "abort-controller": "^3.0.0",
     "assert": "^2.0.0",
     "badgin": "^1.1.5",
-    "expo-application": "~5.8.0",
-    "expo-constants": "~15.4.0",
+    "expo-application": "~5.4.0",
+    "expo-constants": "~15.0.0",
     "fs-extra": "^9.1.0",
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.11",
     "@types/node-fetch": "^2.5.7",
     "@types/uuid": "^3.4.7",
     "expo-module-scripts": "^3.0.0",
@@ -57,5 +56,6 @@
   },
   "peerDependencies": {
     "expo": "*"
-  }
+  },
+  "gitHead": "79607a7325f47aa17c36d266100d09a4ff2cc544"
 }

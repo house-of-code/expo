@@ -29,6 +29,7 @@ import abi49_0_0.expo.modules.notifications.notifications.triggers.DateTrigger;
 import abi49_0_0.expo.modules.notifications.notifications.triggers.TimeIntervalTrigger;
 import abi49_0_0.expo.modules.notifications.notifications.triggers.WeeklyTrigger;
 import abi49_0_0.expo.modules.notifications.notifications.triggers.YearlyTrigger;
+import abi49_0_0.expo.modules.notifications.notifications.triggers.MonthlyTrigger;
 import abi49_0_0.expo.modules.notifications.service.NotificationsService;
 
 public class NotificationScheduler extends ExportedModule {
@@ -186,6 +187,17 @@ public class NotificationScheduler extends ExportedModule {
         }
         return new WeeklyTrigger(
           ((Number) params.get("weekday")).intValue(),
+          ((Number) params.get("hour")).intValue(),
+          ((Number) params.get("minute")).intValue(),
+          channelId
+        );
+      case "monthly":
+        if (!(params.get("day") instanceof Number) || !(params.get("month") instanceof Number) || !(params.get("hour") instanceof Number) || !(params.get("minute") instanceof Number)) {
+          throw new InvalidArgumentException("Invalid value(s) provided for monthly trigger.");
+        }
+        return new MonthlyTrigger(
+          ((Number) params.get("day")).intValue(),
+          ((Number) params.get("month")).intValue(),
           ((Number) params.get("hour")).intValue(),
           ((Number) params.get("minute")).intValue(),
           channelId

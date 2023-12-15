@@ -79,13 +79,13 @@ export default async function scheduleNotificationAsync(
   }
 
   return await NotificationScheduler.scheduleNotificationAsync(
-    request.identifier ?? uuid.v4(),
+    request.identifier ?? uuid.toString(),
     request.content,
     parseTrigger(request.trigger)
   );
 }
 
-type ValidTriggerDateComponents = 'month' | 'day' | 'weekday' | 'hour' | 'minute';
+type ValidTriggerDateComponents = 'month' | 'day' | 'weekday' | 'hour' | 'minute' | 'repeatAmount';
 
 const DAILY_TRIGGER_EXPECTED_DATE_COMPONENTS: readonly ValidTriggerDateComponents[] = [
   'hour',
@@ -96,14 +96,13 @@ const WEEKLY_TRIGGER_EXPECTED_DATE_COMPONENTS: readonly ValidTriggerDateComponen
   'hour',
   'minute',
 ];
-
 const MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS: readonly ValidTriggerDateComponents[] = [
   'day',
   'month',
   'hour',
   'minute',
+  'repeatAmount',
 ];
-
 const YEARLY_TRIGGER_EXPECTED_DATE_COMPONENTS: readonly ValidTriggerDateComponents[] = [
   'day',
   'month',
@@ -261,8 +260,8 @@ function isMonthlyTriggerInput(
   const { channelId, ...triggerWithoutChannelId } = trigger as MonthlyTriggerInput;
   return (
     Object.keys(triggerWithoutChannelId).length ===
-    MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS.length + 1 &&
-    MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS.every(
+      MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS.length + 1 &&
+      MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS.every(
       (component) => component in triggerWithoutChannelId
     ) &&
     'repeats' in triggerWithoutChannelId &&

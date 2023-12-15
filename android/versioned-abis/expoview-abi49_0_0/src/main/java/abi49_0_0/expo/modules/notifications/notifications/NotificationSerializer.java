@@ -34,6 +34,7 @@ import abi49_0_0.expo.modules.notifications.notifications.triggers.DateTrigger;
 import abi49_0_0.expo.modules.notifications.notifications.triggers.TimeIntervalTrigger;
 import abi49_0_0.expo.modules.notifications.notifications.triggers.WeeklyTrigger;
 import abi49_0_0.expo.modules.notifications.notifications.triggers.YearlyTrigger;
+import abi49_0_0.expo.modules.notifications.notifications.triggers.MonthlyTrigger;
 
 public class NotificationSerializer {
   public static Bundle toBundle(NotificationResponse response) {
@@ -178,6 +179,12 @@ public class NotificationSerializer {
       bundle.putInt("weekday", ((WeeklyTrigger) trigger).getWeekday());
       bundle.putInt("hour", ((WeeklyTrigger) trigger).getHour());
       bundle.putInt("minute", ((WeeklyTrigger) trigger).getMinute());
+    } else if (trigger instanceof MonthlyTrigger) {
+      bundle.putString("type", "monthly");
+      bundle.putInt("day", ((MonthlyTrigger) trigger).getDay());
+      bundle.putInt("month", ((MonthlyTrigger) trigger).getMonth());
+      bundle.putInt("hour", ((MonthlyTrigger) trigger).getHour());
+      bundle.putInt("minute", ((MonthlyTrigger) trigger).getMinute());
     } else if (trigger instanceof YearlyTrigger) {
       bundle.putString("type", "yearly");
       bundle.putInt("day", ((YearlyTrigger) trigger).getDay());

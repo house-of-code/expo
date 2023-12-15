@@ -15,7 +15,7 @@ let warningMessageShown = false;
  */
 export default async function presentNotificationAsync(
   content: NotificationContentInput,
-  identifier: string = uuid.v4()
+  identifier: string = uuid.toString()
 ): Promise<string> {
   if (__DEV__ && !warningMessageShown) {
     console.warn(

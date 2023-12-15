@@ -152,6 +152,19 @@ export interface WeeklyNotificationTrigger {
     minute: number;
 }
 /**
+ * A trigger related to a monthly notification.
+ * > The same functionality will be achieved on iOS with a `CalendarNotificationTrigger`.
+ * @platform android
+ */
+export interface MonthlyNotificationTrigger {
+    type: 'monthly';
+    day: number;
+    month: number;
+    hour: number;
+    minute: number;
+    repeatAmount: number;
+}
+/**
  * A trigger related to a yearly notification.
  * > The same functionality will be achieved on iOS with a `CalendarNotificationTrigger`.
  * @platform android
@@ -218,7 +231,7 @@ export interface UnknownNotificationTrigger {
 /**
  * A union type containing different triggers which may cause the notification to be delivered to the application.
  */
-export type NotificationTrigger = PushNotificationTrigger | CalendarNotificationTrigger | LocationNotificationTrigger | TimeIntervalNotificationTrigger | DailyNotificationTrigger | WeeklyNotificationTrigger | YearlyNotificationTrigger | UnknownNotificationTrigger;
+export type NotificationTrigger = PushNotificationTrigger | CalendarNotificationTrigger | LocationNotificationTrigger | TimeIntervalNotificationTrigger | DailyNotificationTrigger | WeeklyNotificationTrigger | MonthlyNotificationTrigger | YearlyNotificationTrigger | UnknownNotificationTrigger;
 /**
  * A trigger that will cause the notification to be delivered immediately.
  */

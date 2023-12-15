@@ -59,7 +59,7 @@ export default async function scheduleNotificationAsync(request) {
     if (!NotificationScheduler.scheduleNotificationAsync) {
         throw new UnavailabilityError('Notifications', 'scheduleNotificationAsync');
     }
-    return await NotificationScheduler.scheduleNotificationAsync(request.identifier ?? uuid.v4(), request.content, parseTrigger(request.trigger));
+    return await NotificationScheduler.scheduleNotificationAsync(request.identifier ?? uuid.toString(), request.content, parseTrigger(request.trigger));
 }
 const DAILY_TRIGGER_EXPECTED_DATE_COMPONENTS = [
     'hour',
@@ -75,6 +75,7 @@ const MONTHLY_TRIGGER_EXPECTED_DATE_COMPONENTS = [
     'month',
     'hour',
     'minute',
+    'repeatAmount',
 ];
 const YEARLY_TRIGGER_EXPECTED_DATE_COMPONENTS = [
     'day',

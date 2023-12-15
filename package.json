@@ -1,7 +1,7 @@
 {
-  "name": "@expo/expo",
+  "name": "@pentiamobile/expo",
   "version": "1.4.0",
-  "private": true,
+  "private": false,
   "author": "Expo",
   "license": "MIT",
   "scripts": {

@@ -1711,6 +1711,7 @@ export type SchedulableNotificationTriggerInput =
   | TimeIntervalTriggerInput
   | DailyTriggerInput
   | WeeklyTriggerInput
+  | MonthlyTriggerInput
   | YearlyTriggerInput
   | CalendarTriggerInput;
 ```
@@ -1772,6 +1773,24 @@ export interface WeeklyTriggerInput {
   weekday: number;
   hour: number;
   minute: number;
+  repeats: true;
+}
+```
+
+#### `MonthlyTriggerInput`
+
+A trigger that will cause the notification to be delivered once every year.
+
+> **Note:** all properties are specified in JavaScript Date's ranges.
+
+```ts
+export interface MonthlyTriggerInput {
+  channelId?: string;
+  day: number;
+  month: number;
+  hour: number;
+  minute: number;
+  repeatAmount: number;
   repeats: true;
 }
 ```

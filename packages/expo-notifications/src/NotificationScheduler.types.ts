@@ -97,4 +97,4 @@ export type NotificationTriggerInput =
   | DailyTriggerInput
   | WeeklyTriggerInput
   | MonthlyTriggerInput
-  | YearlyTriggerInput;
+  | YearlyTriggerInput

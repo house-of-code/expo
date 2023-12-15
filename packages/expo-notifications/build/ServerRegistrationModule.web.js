@@ -3,7 +3,7 @@ const INSTALLATION_ID_KEY = 'EXPO_NOTIFICATIONS_INSTALLATION_ID';
 const REGISTRATION_INFO_KEY = 'EXPO_NOTIFICATIONS_REGISTRATION_INFO';
 // Lazy fallback installationId per session initializer
 let getFallbackInstallationId = () => {
-    const sessionInstallationId = uuid.v4();
+    const sessionInstallationId = uuid.toString();
     getFallbackInstallationId = () => sessionInstallationId;
 };
 export default {
@@ -12,7 +12,7 @@ export default {
         try {
             installationId = localStorage.getItem(INSTALLATION_ID_KEY);
             if (!installationId || typeof installationId !== 'string') {
-                installationId = uuid.v4();
+                installationId = uuid.toString();
                 localStorage.setItem(INSTALLATION_ID_KEY, installationId);
             }
         }
